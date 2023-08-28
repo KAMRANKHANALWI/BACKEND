@@ -48,7 +48,7 @@ const signup = async (req, res, next) => {
   const createdUser = new User({
     name,
     email,
-    image: 'https://live.staticflickr.com/7631/26849088292_36fc52ee90_b.jpg',
+    image: 'https://wallpapercrafter.com/th8003/1057790-justin-bieber-music-singer-celebrity-white-background.jpg',
     password,
     places: []
   });
@@ -98,3 +98,4 @@ const login = async (req, res, next) => {
 exports.getUsers = getUsers;
 exports.signup = signup;
 exports.login = login;
+

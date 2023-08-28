@@ -1,4 +1,3 @@
-
 const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 
@@ -15,7 +14,7 @@ const getPlaceById = async (req, res, next) => {
     place = await Place.findById(placeId);
   } catch (err) {
     const error = new HttpError(
-      'Something went wrong, could not find a place.',
+      'Something went wrong, could not find a place!!!!!.',
       500
     );
     return next(error);
@@ -160,6 +159,7 @@ const updatePlace = async (req, res, next) => {
 
 const deletePlace = async (req, res, next) => {
   const placeId = req.params.pid;
+  console.log(placeId)
 
   let place;
   try {
@@ -180,13 +180,15 @@ const deletePlace = async (req, res, next) => {
   try {
     const sess = await mongoose.startSession();
     sess.startTransaction();
-    await place.remove({session: sess});
+    await place.deleteOne({session: sess});
+    // await place.remove({session: sess});
     place.creator.places.pull(place);
     await place.creator.save({session: sess});
     await sess.commitTransaction();
   } catch (err) {
+    console.log(err);
     const error = new HttpError(
-      'Something went wrong, could not delete place.',
+      'Something went wrong, could not delete place.cddc',
       500
     );
     return next(error);
