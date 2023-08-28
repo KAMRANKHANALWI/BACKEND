@@ -48,7 +48,7 @@ const signup = async (req, res, next) => {
   const createdUser = new User({
     name,
     email,
-    image: 'https://wallpapercrafter.com/th8003/1057790-justin-bieber-music-singer-celebrity-white-background.jpg',
+    image: req.file.path,
     password,
     places: []
   });
